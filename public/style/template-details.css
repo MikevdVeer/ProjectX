@@ -1,0 +1,110 @@
+/* Template Preview Overlay Styles */
+.template-preview {
+    position: relative;
+    overflow: hidden;
+}
+
+.template-preview img {
+    transition: transform 0.3s ease;
+}
+
+.template-preview:hover img {
+    transform: scale(1.05);
+}
+
+.preview-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    backdrop-filter: blur(2px);
+}
+
+.template-preview:hover .preview-overlay {
+    opacity: 1;
+}
+
+.preview-btn {
+    background: linear-gradient(135deg, #20c997 0%, #17a2b8 100%);
+    border: none;
+    color: white;
+    padding: 12px 24px;
+    border-radius: 25px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(32, 201, 151, 0.3);
+}
+
+.preview-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(32, 201, 151, 0.4);
+    color: white;
+    text-decoration: none;
+}
+
+.preview-btn i {
+    margin-right: 8px;
+}
+
+/* Review Form Styles */
+.review-form-container {
+    transition: all 0.3s ease;
+}
+
+.review-form-container:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+.review-form .form-control {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #fff;
+    transition: all 0.3s ease;
+}
+
+.review-form .form-control:focus {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: #20c997;
+    box-shadow: 0 0 0 0.2rem rgba(32, 201, 151, 0.25);
+    color: #fff;
+}
+
+.review-form .form-control::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.review-form .form-label {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.review-form .btn-teal {
+    background: linear-gradient(135deg, #20c997 0%, #17a2b8 100%);
+    border: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(32, 201, 151, 0.3);
+}
+
+.review-form .btn-teal:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(32, 201, 151, 0.4);
+}
+
+/* Review Card Styles */
+.review-card {
+    transition: all 0.3s ease;
+}
+
+.review-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+} 

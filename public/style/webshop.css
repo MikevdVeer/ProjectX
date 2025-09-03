@@ -1,0 +1,129 @@
+/* Template Cards */
+.template-card {
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+.template-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3), 0 0 20px rgba(255, 255, 255, 0.15) !important;
+}
+
+.hover-overlay {
+    transition: opacity 0.3s ease;
+}
+
+.template-card:hover .hover-overlay {
+    opacity: 0.1;
+}
+
+.object-fit-cover {
+    object-fit: cover;
+}
+
+.transition-all {
+    transition: all 0.3s ease;
+}
+
+/* Teal Accent Colors */
+.text-teal {
+    color: #00FFB2 !important;
+}
+
+.btn-teal {
+    background-color: #00FFB2;
+    border-color: #00FFB2;
+    color: #1a202c;
+}
+
+.btn-teal:hover {
+    background-color: #00e6a0;
+    border-color: #00e6a0;
+    color: #1a202c;
+}
+
+/* Background Gradient */
+.webshop-bg {
+    background: linear-gradient(135deg, #1a202c 0%, #111827 100%), radial-gradient(circle at top right, rgba(0, 255, 178, 0.2) 0%, transparent 70%);
+    min-height: 100vh;
+}
+
+/* Category-specific Styles */
+.category-shop {
+    background: linear-gradient(135deg, #FF6B00 0%, #FFB800 100%);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.category-data {
+    background: linear-gradient(135deg, #FF0055 0%, #FF66B2 100%);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.category-navigation {
+    background: linear-gradient(135deg, #00B4D8 0%, #48CAE4 100%);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.category-animation {
+    background: linear-gradient(135deg, #7B2CBF 0%, #C77DFF 100%);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.category-layout {
+    background: linear-gradient(135deg, #2D6A4F 0%, #74C69D 100%);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.category-ui {
+    background: linear-gradient(135deg, #1A759F 0%, #48CAE4 100%);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.category-ecommerce {
+    background: linear-gradient(135deg, #E63946 0%, #FF8A98 100%);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.category-blog {
+    background: linear-gradient(135deg, #6A4C93 0%, #B5A8C4 100%);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.category-portfolio {
+    background: linear-gradient(135deg, #457B9D 0%, #A8DADC 100%);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Add this new style for the Cards category */
+.category-cards {
+    background: linear-gradient(135deg, #4A90E2 0%, #87CEEB 100%);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Category Icons */
+.category-icon {
+    font-size: 5rem;
+    color: white;
+    opacity: 0.9;
+    transition: all 0.3s ease;
+}
+
+.template-card:hover .category-icon {
+    transform: scale(1.1);
+    opacity: 1;
+}
+
+.category-dashboard {
+    background: linear-gradient(135deg, #FF6B6B 0%, #4ECDC4 100%);
+    transition: transform 0.3s ease;
+}
+
+.category-dashboard:hover {
+    transform: translateY(-5px);
+}
+
+/* Premium Templates Category */
+.category-premium-templates {
+    background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+} 

@@ -1,0 +1,68 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}MCSA Market - {{ category|capitalize }}{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('style/webshop.css') }}">
+{% endblock %}
+
+{% block body %}
+    {% include 'nav.html.twig' %}
+    <main class="webshop-bg">
+        <div class="container py-5">
+            <!-- Category Title -->
+            <div class="mb-5">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="{{ path('app_webshop') }}" class="text-teal">Webshop</a></li>
+                        <li class="breadcrumb-item active text-light" aria-current="page">{{ category|capitalize }}</li>
+                    </ol>
+                </nav>
+                <h1 class="display-5 fw-bold text-light">{{ category|capitalize }}</h1>
+            </div>
+
+            <!-- Templates Grid -->
+            <div class="row g-4">
+                {% for template in templates %}
+                    <div class="col-md-4">
+                        <div class="template-card rounded-4 border-0 shadow-sm h-100" style="background: linear-gradient(135deg, #1a202c 0%, #2d3748 100%);">
+                            <a href="{{ path('app_template_details', {'id': template.id}) }}" class="text-decoration-none">
+                                <div class="position-relative overflow-hidden rounded-top-4" style="height: 250px;">
+                                    <img src="/images/templates/{{ template.previewImg }}" class="w-100 h-100 object-fit-cover" alt="{{ template.name }}">
+                                    <div class="position-absolute top-0 start-0 w-100 h-100 bg-dark opacity-0 hover-overlay transition-all"></div>
+                                </div>
+                                <div class="card-body p-4">
+                                    <h5 class="card-title fw-bold mb-2 text-light">{{ template.name }}</h5>
+                                    {# <p class="card-text text-muted small mb-3">{{ template.type }}</p> #}
+                                    <div class="d-flex justify-content-between align-items-center mt-4">
+                                        <span class="h5 mb-0 text-teal fw-bold">
+                                            {% if template.price is not empty %}
+                                                &euro;{{ template.price }}
+                                            {% else %}
+                                                Free
+                                            {% endif %}
+                                        </span>
+                                        <span class="btn btn-teal rounded-pill px-4">View Details</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                {% else %}
+                    <div class="col-12">
+                        <div class="alert alert-info">
+                            No templates found in this category.
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+
+            <!-- Footer Info -->
+            <div class="d-flex justify-content-between mt-5 pt-4 border-top text-muted">
+                <p>Version: 1.0.0.0</p>
+                <p>0.0.8</p>
+            </div>
+        </div>
+    </main>
+{% endblock %} 

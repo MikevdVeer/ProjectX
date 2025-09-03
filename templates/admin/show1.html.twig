@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ template.name }}{% endblock %}
+
+{% block body %}
+    <h1>{{ template.name }}</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ template.id }}</td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td>{{ template.name }}</td>
+            </tr>
+            <tr>
+                <th>price</th>
+                <td>{{ template.price }}</td>
+            </tr>
+            <tr>
+                <th>Categories</th>
+                <td>
+                    <ul>
+                        {% for category in template.categories %}
+                            <li>{{ category.name }}</li>
+                        {% else %}
+                            <li>No categories</li>
+                        {% endfor %}
+                    </ul>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+{% endblock %}

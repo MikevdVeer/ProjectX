@@ -1,0 +1,178 @@
+{% block body %}
+<!-- Navigation -->
+	<nav class="navbar bg-dark navbar-expand-lg shadow position-sticky top-0 z-3">
+		<div
+			class="container">
+			<!-- Logo on the left -->
+			<a class="navbar-brand" href="{{ path('app_home') }}">
+				<svg width="26" height="24" viewbox="0 0 26 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<path d="M21.5098 13.1826C22.7136 13.1826 23.3069 14.6466 22.4427 15.4847L14.4801 23.2069C13.9557 23.7155 13.2539 23.9999 12.5234 23.9999L3.30672 23.9999C2.10292 23.9999 1.50962 22.536 2.37378 21.6979L10.3364 13.9756C10.8608 13.467 11.5626 13.1826 12.2931 13.1826L21.5098 13.1826Z" fill="#00FFB2" fill-opacity="0.8"/>
+					<path d="M21.7715 6.47949C22.9753 6.47949 23.5686 7.94347 22.7044 8.78154L14.8593 16.3898C14.2596 16.9715 13.4569 17.2968 12.6214 17.2968L3.56844 17.2968C2.36464 17.2968 1.77134 15.8328 2.6355 14.9948L10.5981 7.27249C11.1225 6.76391 11.8243 6.47949 12.5548 6.47949L21.7715 6.47949Z" fill="#00FFB2" fill-opacity="0.8"/>
+					<path d="M21.5098 -1.44538e-07C22.7136 -9.19179e-08 23.3069 1.46398 22.4427 2.30205L14.4801 10.0243C13.9557 10.5329 13.2539 10.8173 12.5234 10.8173L3.30672 10.8173C2.10292 10.8173 1.50962 9.35334 2.37378 8.51527L10.3364 0.793001C10.8608 0.284422 11.5626 -5.79342e-07 12.2931 -5.4741e-07L21.5098 -1.44538e-07Z" fill="#00FFB2" fill-opacity="0.8"/>
+				</svg>
+				MCSA Market
+
+			</a>
+
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+
+			<div
+				class="collapse navbar-collapse" id="navbarNav">
+				<!-- Main navigation links -->
+				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+					<li class="nav-item">
+						<a class="nav-link" href="{{path('app_webshop')}}">Webshop</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="{{path('app_course')}}">Course</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="{{path('app_home')}}#membership">Membership</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="{{path('app_about')}}">About Us</a>
+					</li>
+					{% if app.user %}
+						{% if "ROLE_ADMIN" in app.user.roles %}
+							<li class="nav-item">
+								<a class="nav-link" href="{{ path('app_admin') }}">Admin</a>
+							</li>
+						{% endif %}
+					{% endif %}
+				</ul>
+
+				<!-- Right side items -->
+				<ul class="navbar-nav ms-auto mb-2 mb-lg-0 d-flex align-items-center">
+					{% if app.user %}
+					<li class="nav-item dropdown">
+						<a href="#" class="nav-link dropdown-toggle" id="cartDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+							<i class="bi bi-cart"></i>
+							Cart
+							<span class="badge bg-primary rounded-pill">{{ app.session.get('cart')|length }}</span>
+						</a>
+						<div class="dropdown-menu dropdown-menu-end p-3 shadow" aria-labelledby="cartDropdown" style="min-width: 320px;">
+							<h6 class="mb-3">Shopping Cart ({{ app.session.get('cart')|length }})</h6>
+							<div class="dropdown-divider"></div>
+							{% set total = 0 %}
+							{% for item in app.session.get('cart', {}) %}
+								<div class="d-flex justify-content-between align-items-center mb-2">
+									<div class="d-flex align-items-center">
+										<img src="/images/templates/{{ item.previewImg }}" alt="{{ item.name }}" width="40" class="me-2">
+										<div>
+											<h6 class="mb-0">{{ item.name }}</h6>
+											<small class="text-muted">&euro;{{ item.price }}</small>
+										</div>
+									</div>
+									<div class="text-end">
+										<a href="{{ path('app_cart_remove', {'id': item.id}) }}" class="btn btn-sm btn-outline-danger">
+											<i class="bi bi-trash"></i>
+										</a>
+									</div>
+								</div>
+								<div class="dropdown-divider"></div>
+								{% set total = total + item.price %}
+							{% endfor %}
+							<div class="d-flex justify-content-between mb-3">
+								<strong>Total:</strong>
+								<strong class="text-primary">&euro;{{ total }}</strong>
+							</div>
+							{% if app.session.get('cart')|length > 0 %}
+								<a href="{{ path('app_cart') }}" class="btn btn-teal w-100">View Cart</a>
+							{% endif %}
+						</div>
+					</li>
+					{% endif %}
+					<li class="nav-item dropdown">
+						<a href="#" class="nav-link dropdown-toggle" id="accountDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+							{% if app.user %}
+								{% if app.user.profilepicture %}
+									<img src="{{ asset('images/pfps/' ~ app.user.profilepicture) }}" alt="pfp" class="img-thumbnail" style="height: 50px;width: 50px;border-radius: 50%">
+								{% else %}
+									<i class="bi bi-person"></i>
+								{% endif %}
+							{{ app.user.username }}
+							{% else %}
+								<i class="bi bi-person"></i>
+								Account
+							{% endif %}
+						</a>
+						<div class="dropdown-menu dropdown-menu-end p-3 shadow" aria-labelledby="accountDropdown" style="min-width: 280px;">
+							<div class="d-flex justify-content-between align-items-center mb-2">
+								{% if app.user %}
+									<div class="dropdown-item">
+										<a class="nav-link" href="{{ path('app_logout') }}">
+											<i class="bi bi-person-dash"></i>
+											Sign Out
+										</a>
+									</div>
+									<div class="dropdown-item">
+										<a class="nav-link" href="{{ path('app_account', {'id': app.user.id}) }}">
+											<i class="bi bi-person-gear"></i>
+											Settings
+										</a>
+									</div>
+								{% else %}
+									<div class="dropdown-item">
+										<a class="nav-link" href="{{ path('app_login') }}">
+											<i class="bi bi-person-check"></i>
+											Sign In
+										</a>
+									</div>
+									<div class="dropdown-item">
+										<a class="nav-link" href="{{ path('app_register') }}">
+											<i class="bi bi-person-plus"></i>
+											Sign Up
+										</a>
+									</div>
+								{% endif %}
+							</div>
+						</div>
+					</li>
+
+					{# <li class="nav-item dropdown">
+						<a data-mdb-dropdown-init="" class="nav-link dropdown-toggle text-black" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+							<i class="fas fa-user mx-1"></i>
+							Profile
+						</a>
+						<!-- Dropdown menu -->
+						<div class="dropdown-menu dropdown-menu-end shadow" aria-labelledby="navbarDropdown">
+							<div class="px-3 py-2 d-flex align-items-center border-bottom">
+								<div class="rounded-circle bg-primary text-white d-flex align-items-center justify-content-center me-2" style="width: 32px; height: 32px;">
+									<i class="fas fa-user-circle"></i>
+								</div>
+								<div>
+									<h6 class="mb-0">John Doe</h6>
+									<small class="text-muted">john.doe@example.com</small>
+								</div>
+							</div>
+							<a class="dropdown-item py-2" href="#">
+								<i class="fas fa-user-cog me-2"></i>
+								My Account
+							</a>
+							<a class="dropdown-item py-2" href="#">
+								<i class="fas fa-shopping-bag me-2"></i>
+								My Orders
+							</a>
+							<a class="dropdown-item py-2" href="#">
+								<i class="fas fa-heart me-2"></i>
+								Wishlist
+							</a>
+							<a class="dropdown-item py-2" href="#">
+								<i class="fas fa-cog me-2"></i>
+								Settings
+							</a>
+							<div class="dropdown-divider"></div>
+							<a class="dropdown-item py-2" href="#">
+								<i class="fas fa-sign-out-alt me-2"></i>
+								Log Out
+							</a>
+						</div>
+					</li> #}
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+{% endblock %}

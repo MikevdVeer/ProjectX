@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Templates{% endblock %}
+
+{% block body %}
+    <h1>Templates</h1>
+
+    <table class="table">
+        <tbody>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Price</th>
+            <th>View</th>
+            <th>Update</th>
+            <th>Delete</th>
+        {% for template in templates %}
+        <tr>
+            <td>{{ template.id }}</td>
+            <td>{{ template.name }}</td>
+            <td>
+                {% if template.price %}
+                    {{ template.price }}
+                {% else %}
+                    {{ 0.00 }}
+                {% endif %}
+            </td>
+            <td><a class="btn btn-primary" href="{{ path('app_admin_template', {'id': template.id}) }}">Show</a></td>
+            <td><a class="btn btn-warning" href="{{ path('app_admin_update', {'id': template.id}) }}">Update</a></td>
+            <td><a class="btn btn-danger" href="{{ path('app_admin_delete', {'id': template.id}) }}">Delete</a></td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <a class="btn btn-primary" href="{{ path('app_admin_insert') }}">Insert</a>
+{% endblock %}

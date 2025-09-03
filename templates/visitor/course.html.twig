@@ -1,0 +1,170 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+{% include 'nav.html.twig' %}
+
+<div class="d-flex position-relative" style="min-height: 100vh;">
+    <!-- Sidebar -->
+    <div class="d-flex flex-column p-3 text-white bg-dark" style="width: 200px; min-height: 100vh;">
+        <ul class="nav nav-pills flex-column mb-auto">
+            <li class="mb-2">
+                <span class="fw-bold" style="color: #a259ff;">
+                    <i class="bi bi-journal-bookmark-fill me-2"></i>Getting started
+                </span>
+                <ul class="nav flex-column ms-3 mt-1">
+                    <li>
+                        <a href="#" class="nav-link active text-white" style="background-color: #4f2cc6;" data-content="introduction">
+                            Introduction
+                        </a>
+                    </li>
+                    <li><a href="#" class="nav-link text-white-50" data-content="download">Download</a></li>
+                    <li><a href="#" class="nav-link text-white-50" data-content="contents">Contents</a></li>
+                    <li><a href="#" class="nav-link text-white-50" data-content="browsers">Browsers & devices</a></li>
+                    <li><a href="#" class="nav-link text-white-50" data-content="javascript">JavaScript</a></li>
+                    <li><a href="#" class="nav-link text-white-50" data-content="webpack">Webpack</a></li>
+                    <li><a href="#" class="nav-link text-white-50" data-content="parcel">Parcel</a></li>
+                    <li><a href="#" class="nav-link text-white-50" data-content="vite">Vite</a></li>
+                    <li><a href="#" class="nav-link text-white-50" data-content="accessibility">Accessibility</a></li>
+                    <li><a href="#" class="nav-link text-white-50" data-content="rfs">RFS</a></li>
+                    <li><a href="#" class="nav-link text-white-50" data-content="rtl">RTL</a></li>
+                    <li><a href="#" class="nav-link text-white-50" data-content="contribute">Contribute</a></li>
+                </ul>
+            </li>
+            <li class="mb-2 mt-3">
+                <span class="fw-bold" style="color: #e83e8c;">
+                    <i class="bi bi-palette2 me-2"></i>Customize
+                </span>
+                <ul class="nav flex-column ms-3 mt-1">
+                    <li><a href="#" class="nav-link text-white-50" data-content="overview">Overview</a></li>
+                    <li><a href="#" class="nav-link text-white-50" data-content="sass">Sass</a></li>
+                    <li><a href="#" class="nav-link text-white-50" data-content="options">Options</a></li>
+                    <li><a href="#" class="nav-link text-white-50" data-content="color">Color</a></li>
+                    <li><a href="#" class="nav-link text-white-50" data-content="color-modes">Color modes</a></li>
+                    <li><a href="#" class="nav-link text-white-50" data-content="components">Components</a></li>
+                    <li><a href="#" class="nav-link text-white-50" data-content="css-variables">CSS variables</a></li>
+                    <li><a href="#" class="nav-link text-white-50" data-content="optimize">Optimize</a></li>
+                </ul>
+            </li>
+            <li class="mb-2 mt-3">
+                <span class="fw-bold" style="color: #20dfc4;">
+                    <i class="bi bi-grid-3x3-gap-fill me-2"></i>Layout
+                </span>
+                <ul class="nav flex-column ms-3 mt-1">
+                    <li><a href="#" class="nav-link text-white-50" data-content="breakpoints">Breakpoints</a></li>
+                    <li><a href="#" class="nav-link text-white-50" data-content="containers">Containers</a></li>
+                    <li><a href="#" class="nav-link text-white-50" data-content="grid">Grid</a></li>
+                    <li><a href="#" class="nav-link text-white-50" data-content="columns">Columns</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Main Content Area -->
+    <div class="flex-grow-1 p-4" style=" min-height: 100vh; background: linear-gradient(135deg, rgba(26, 32, 44, 0.95) 0%, rgba(17, 24, 39, 0.95) 100%);">
+        <div class="container-fluid">
+            <!-- Dynamic Content Area -->
+            <div id="dynamic-content">
+                <!-- Default content -->
+                <h2 class="text-light mb-4">Available Courses</h2>
+                <div class="row g-4">
+                    <!-- Course Cards -->
+                    <div class="col-md-4">
+                        <div class="card bg-dark text-light h-100">
+                            <img src="https://via.placeholder.com/300x200" class="card-img-top" alt="Course Image">
+                            <div class="card-body">
+                                <h5 class="card-title">Web Development Basics</h5>
+                                <p class="card-text">Learn the fundamentals of web development including HTML, CSS, and JavaScript.</p>
+                                <a href="#" class="btn btn-primary">Start Learning</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card bg-dark text-light h-100">
+                            <img src="https://via.placeholder.com/300x200" class="card-img-top" alt="Course Image">
+                            <div class="card-body">
+                                <h5 class="card-title">Advanced JavaScript</h5>
+                                <p class="card-text">Master modern JavaScript concepts and frameworks.</p>
+                                <a href="#" class="btn btn-primary">Start Learning</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card bg-dark text-light h-100">
+                            <img src="https://via.placeholder.com/300x200" class="card-img-top" alt="Course Image">
+                            <div class="card-body">
+                                <h5 class="card-title">React Development</h5>
+                                <p class="card-text">Build modern web applications with React.</p>
+                                <a href="#" class="btn btn-primary">Start Learning</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Add JavaScript for dynamic content loading -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const navLinks = document.querySelectorAll('.nav-link[data-content]');
+    const contentArea = document.getElementById('dynamic-content');
+
+    const contentMap = {
+        'introduction': `<h2 class='text-light mb-4'>Introduction</h2><p class='text-light'>Welcome to the introduction section.</p>`,
+        'download': `<h2 class='text-light mb-4'>Download</h2><p class='text-light'>Here you can find download instructions.</p>`,
+        'contents': `<h2 class='text-light mb-4'>Contents</h2><p class='text-light'>Table of contents goes here.</p>`,
+        'browsers': `<h2 class='text-light mb-4'>Browsers & Devices</h2><p class='text-light'>Supported browsers and devices info.</p>`,
+        'javascript': `<h2 class='text-light mb-4'>JavaScript</h2><p class='text-light'>JavaScript usage and tips.</p>`,
+        'webpack': `<h2 class='text-light mb-4'>Webpack</h2><p class='text-light'>Webpack configuration details.</p>`,
+        'parcel': `<h2 class='text-light mb-4'>Parcel</h2><p class='text-light'>Parcel bundler information.</p>`,
+        'vite': `<h2 class='text-light mb-4'>Vite</h2><p class='text-light'>Vite setup guide.</p>`,
+        'accessibility': `<h2 class='text-light mb-4'>Accessibility</h2><p class='text-light'>Accessibility best practices.</p>`,
+        'rfs': `<h2 class='text-light mb-4'>RFS</h2><p class='text-light'>Responsive Font Sizes (RFS) info.</p>`,
+        'rtl': `<h2 class='text-light mb-4'>RTL</h2><p class='text-light'>Right-to-left support details.</p>`,
+        'contribute': `<h2 class='text-light mb-4'>Contribute</h2><p class='text-light'>How to contribute to the project.</p>`,
+        'overview': `<h2 class='text-light mb-4'>Overview</h2><p class='text-light'>Overview of customization options.</p>`,
+        'sass': `<h2 class='text-light mb-4'>Sass</h2><p class='text-light'>Sass usage and variables.</p>`,
+        'options': `<h2 class='text-light mb-4'>Options</h2><p class='text-light'>Available options for customization.</p>`,
+        'color': `<h2 class='text-light mb-4'>Color</h2><p class='text-light'>Color customization guide.</p>`,
+        'color-modes': `<h2 class='text-light mb-4'>Color Modes</h2><p class='text-light'>Switch between color modes.</p>`,
+        'components': `<h2 class='text-light mb-4'>Components</h2><p class='text-light'>Reusable components info.</p>`,
+        'css-variables': `<h2 class='text-light mb-4'>CSS Variables</h2><p class='text-light'>Using CSS variables in your project.</p>`,
+        'optimize': `<h2 class='text-light mb-4'>Optimize</h2><p class='text-light'>Optimization tips and tricks.</p>`,
+        'breakpoints': `<h2 class='text-light mb-4'>Breakpoints</h2><p class='text-light'>Responsive breakpoints explained.</p>`,
+        'containers': `<h2 class='text-light mb-4'>Containers</h2><p class='text-light'>How to use containers.</p>`,
+        'grid': `<h2 class='text-light mb-4'>Grid</h2><p class='text-light'>Bootstrap grid system guide.</p>`,
+        'columns': `<h2 class='text-light mb-4'>Columns</h2><p class='text-light'>Working with columns.</p>`
+    };
+
+    navLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const contentType = this.getAttribute('data-content');
+
+            // Remove active class from all links
+            navLinks.forEach(l => {
+                l.classList.remove('active', 'text-white');
+                l.classList.add('text-white-50');
+                l.style.backgroundColor = '';
+            });
+            // Add active class to clicked link
+            this.classList.add('active', 'text-white');
+            this.classList.remove('text-white-50');
+            if(contentType === 'introduction') {
+                this.style.backgroundColor = '#4f2cc6';
+            } else {
+                this.style.backgroundColor = '#343a40';
+            }
+
+            // Load content based on the data-content attribute
+            if(contentMap[contentType]) {
+                contentArea.innerHTML = contentMap[contentType];
+            } else {
+                contentArea.innerHTML = `<h2 class='text-light mb-4'>Available Courses</h2>`;
+            }
+        });
+    });
+});
+</script>
+
+{% endblock %}

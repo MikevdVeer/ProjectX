@@ -1,0 +1,184 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+{% include 'nav.html.twig' %}
+
+<main style="background: linear-gradient(135deg, #1a1f2c 0%, #2d3748 100%); min-height: 100vh;">
+    <!-- Hero Section -->
+    <div class="container py-5">
+        <div class="col-md-10 mx-auto my-5 text-center" style="background: rgba(255,255,255,0.05); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.1); border-radius: 24px; padding: 3rem;">
+            <h1 class="display-4 fw-bold text-light mb-4">Welcome to Our Project</h1>
+            <p class="text-light opacity-75 fs-5 mb-4">
+                This project was developed as part of our studies at Delft ROC Mondriaan as a part of the course "Web Development". 
+                We've combined our skills in web development, database management, and user experience design 
+                to create a platform that showcases our technical abilities and collaborative spirit.
+            </p>
+            <div class="d-flex justify-content-center gap-4 mb-4">
+                <a href="https://github.com/MCSA-Team" class="btn btn-outline-light btn-lg px-4">GitHub</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Our Team Section -->
+    <div class="container py-5">
+        <div class="text-center mb-5">
+            <h2 class="fw-bold text-light display-5">Meet Our Team</h2>
+            <p class="text-light opacity-75 mt-3">The brilliant minds behind this project</p>
+        </div>
+        
+        <div class="row g-4 justify-content-center">
+            <!-- Team Member 1 -->
+            <div class="col-lg-3 col-md-6">
+                <div class="team-member text-center" style="background: rgba(255,255,255,0.05); border-radius: 16px; padding: 2rem; transition: transform 0.3s ease;">
+                    <div class="member-avatar mb-4" style="width: 120px; height: 120px; margin: 0 auto; background: #4a5568; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                        <span class="text-light fs-1">MV</span>
+                    </div>
+                    <h4 class="text-light mb-2">Mike van der Veer</h4>
+                    <p class="text-light opacity-75">Full Stack Developer</p>
+                </div>
+            </div>
+
+            <!-- Team Member 2 -->
+            <div class="col-lg-3 col-md-6">
+                <div class="team-member text-center" style="background: rgba(255,255,255,0.05); border-radius: 16px; padding: 2rem; transition: transform 0.3s ease;">
+                    <div class="member-avatar mb-4" style="width: 120px; height: 120px; margin: 0 auto; background: #4a5568; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                        <span class="text-light fs-1">SB</span>
+                    </div>
+                    <h4 class="text-light mb-2">Sibren Boode</h4>
+                    <p class="text-light opacity-75">Full Stack Developer</p>
+                </div>
+            </div>
+
+            <!-- Team Member 3 -->
+            <div class="col-lg-3 col-md-6">
+                <div class="team-member text-center" style="background: rgba(255,255,255,0.05); border-radius: 16px; padding: 2rem; transition: transform 0.3s ease;">
+                    <div class="member-avatar mb-4" style="width: 120px; height: 120px; margin: 0 auto; background: #4a5568; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                        <span class="text-light fs-1">CV</span>
+                    </div>
+                    <h4 class="text-light mb-2">Cas van der Voort</h4>
+                    <p class="text-light opacity-75">Full Stack Developer</p>
+                </div>
+            </div>
+
+            <!-- Team Member 4 -->
+            <div class="col-lg-3 col-md-6">
+                <div class="team-member text-center" style="background: rgba(255,255,255,0.05); border-radius: 16px; padding: 2rem; transition: transform 0.3s ease;">
+                    <div class="member-avatar mb-4" style="width: 120px; height: 120px; margin: 0 auto; background: #4a5568; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                        <span class="text-light fs-1">AW</span>
+                    </div>
+                    <h4 class="text-light mb-2">Abdel Wahad</h4>
+                    <p class="text-light opacity-75">Full Stack Developer</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<footer class="container mt-5">
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 py-5">
+        <div class="col mb-3">
+            <div class="p-4" style="background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 16px;">
+                <h5 class="text-light mb-3">Quick Links</h5>
+                <ul class="nav flex-column">
+                    <li class="nav-item mb-2">
+                        <a href="{{ path('app_home') }}" class="nav-link p-0 text-light opacity-75">Home</a>
+                    </li>
+                    <li class="nav-item mb-2">
+                        <a href="{{ path('app_about') }}" class="nav-link p-0 text-light opacity-75">About</a>
+                    </li>
+                    <li class="nav-item mb-2">
+                        <a href="https://www.mondriaanict.nl/" target="_blank" class="nav-link p-0 text-light opacity-75">Contact</a>
+                    </li>
+                    <li class="nav-item mb-2">
+                        <a href="{{ path('app_login') }}" class="nav-link p-0 text-light opacity-75">Login</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="col mb-3">
+            <div class="p-4" style="background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 16px;">
+                <h5 class="text-light mb-3">Contact Us</h5>
+                <ul class="nav flex-column">
+                    <li class="nav-item mb-2">
+                        <a href="https://www.mondriaanict.nl/" target="_blank" class="nav-link p-0 text-light opacity-75">
+                            <i class="bi bi-building"></i>
+                            ROC Mondriaan
+                        </a>
+                    </li>
+                    <li class="nav-item mb-2">
+                        <a href="mailto:info@mcsa-team.nl" class="nav-link p-0 text-light opacity-75">
+                            <i class="bi bi-envelope-fill"></i>
+                            info@mcsa-team.nl
+                        </a>
+                    </li>
+                    <li class="nav-item mb-2">
+                        <a href="https://maps.google.com/?q=Brasserskade+1,+2626+CA+Delft" target="_blank" class="nav-link p-0 text-light opacity-75">
+                            <i class="bi bi-geo-alt-fill"></i>
+                            Brasserskade 1, 2626 CA Delft
+                        </a>
+                    </li>
+                    <li class="nav-item mb-2">
+                        <a href="tel:0886663635" class="nav-link p-0 text-light opacity-75">
+                            <i class="bi bi-telephone-fill"></i>
+                            088 - 666 3635
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="col mb-3">
+            <div class="p-4" style="background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 16px;">
+                <h5 class="text-light mb-3">Follow Us</h5>
+                <ul class="nav flex-column">
+                    <li class="nav-item mb-2">
+                        <a href="https://github.com/MCSA-Team" target="_blank" class="nav-link p-0 text-light opacity-75">
+                            <i class="bi bi-github"></i>
+                            GitHub
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="col mb-3">
+            <div class="p-4" style="background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 16px;">
+                <h5 class="text-light mb-3">Location</h5>
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4910.171219570536!2d4.347268376913893!3d52.02353807286713!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c5b5d776440205%3A0xe5bfa517b4fd0e71!2sBrasserskade%201%2C%202612%20CA%20Delft!5e0!3m2!1sen!2snl!4v1745150575948!5m2!1sen!2snl" 
+                    width="100%" 
+                    height="200" 
+                    style="border:0; border-radius: 8px;" 
+                    allowfullscreen="" 
+                    loading="lazy" 
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
+        </div>
+    </div>
+    <div class="text-center py-3">
+        <p class="text-light opacity-75 mb-0">&copy; {{ "now"|date("Y") }} MCSA Team. All rights reserved.</p>
+    </div>
+</footer>
+</main>
+
+<style>
+.team-member:hover {
+    transform: translateY(-10px);
+    background: rgba(255,255,255,0.08) !important;
+}
+
+.nav-link {
+    transition: all 0.3s ease;
+}
+
+.nav-link:hover {
+    opacity: 1 !important;
+    transform: translateX(5px);
+}
+
+.bi {
+    margin-right: 8px;
+}
+</style>
+{% endblock %}

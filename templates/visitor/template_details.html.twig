@@ -1,0 +1,245 @@
+{# ========================================
+   TEMPLATE DETAILS PAGE
+   ========================================
+   
+   This template displays detailed information about a specific template
+   including preview image, details, and user reviews.
+   
+   Variables passed from controller:
+   - template: Template entity with all details
+   - reviewForm: Symfony form for submitting reviews
+   ======================================== #}
+
+{% extends 'base.html.twig' %}
+
+{# Page title - Uses template name #}
+{% block title %}MCSA Market - {{ template.name }}{% endblock %}
+
+{# Additional CSS files for this page #}
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('style/webshop.css') }}">
+    <link rel="stylesheet" href="{{ asset('style/template-details.css') }}">
+{% endblock %}
+
+{# Main page content #}
+{% block body %}
+    {# Include navigation bar #}
+    {% include 'nav.html.twig' %}
+    
+    {# Main content area with dark background #}
+    <main class="webshop-bg">
+        <div class="container py-5">
+            
+            {# ========================================
+               BREADCRUMB NAVIGATION
+               ======================================== #}
+            <div class="mb-5">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        {# Link back to webshop main page #}
+                        <li class="breadcrumb-item"><a href="{{ path('app_webshop') }}" class="text-teal">Webshop</a></li>
+                        
+                        {# Dynamic breadcrumb links for each category #}
+                        {% for category in template.categories %}
+                            <li class="breadcrumb-item">
+                                <a href="{{ path('app_webshop_category', {'category': category.name}) }}" class="text-teal">
+                                    {{ category.name|capitalize }}
+                                </a>
+                            </li>
+                        {% endfor %}
+                        
+                        {# Current page (template name) #}
+                        <li class="breadcrumb-item active text-light" aria-current="page">{{ template.name }}</li>
+                    </ol>
+                </nav>
+            </div>
+
+            {# ========================================
+               TEMPLATE CONTENT SECTION
+               ======================================== #}
+            <div class="row">
+                
+                {# LEFT COLUMN - Template Preview Image #}
+                <div class="col-lg-8 mb-4">
+                    <div class="template-preview rounded-4 overflow-hidden shadow-sm">
+                        {# Template preview image #}
+                        <img src="/images/templates/{{ template.previewImg }}" class="w-100" alt="{{ template.name }}">
+                        
+                        {# Preview overlay with action button #}
+                        <div class="preview-overlay">
+                            {% if template.previewAsset %}
+                                {# Check if preview asset is a direct HTML file #}
+                                {% if template.previewAsset ends with '.html' %}
+                                    <a href="/templates/{{ template.previewAsset }}" target="_blank" class="preview-btn">
+                                {% else %}
+                                    {# Default path structure for template previews #}
+                                    <a href="/templates/{{ template.previewAsset }}/{{ template.previewAsset }}/index.html" target="_blank" class="preview-btn">
+                                {% endif %}
+                                    <i class="fas fa-eye"></i>
+                                    Preview Template
+                                </a>
+                            {% else %}
+                                {# Show disabled button if no preview available #}
+                                <span class="preview-btn" style="background: #6c757d; cursor: not-allowed;">
+                                    <i class="fas fa-eye-slash"></i>
+                                    Preview Not Available
+                                </span>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+
+                {# RIGHT COLUMN - Template Details #}
+                <div class="col-lg-4">
+                    <div class="template-details p-4 rounded-4" style="background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1);">
+                        
+                        {# Template name as main heading #}
+                        <h1 class="h2 fw-bold text-light mb-3">{{ template.name }}</h1>
+
+                        {# Categories section #}
+                        <div class="mb-4">
+                            <h5 class="text-light mb-3">Categories</h5>
+                            <div class="d-flex flex-wrap gap-2">
+                                {% for category in template.categories %}
+                                    <span class="badge bg-teal text-light">{{ category.name|capitalize }}</span>
+                                {% endfor %}
+                            </div>
+                        </div>
+
+                        {# Price section #}
+                        <div class="mb-4">
+                            <h5 class="text-light mb-3">Price</h5>
+                            <h3 class="text-teal fw-bold">
+                                {% if template.price is not empty %}
+                                    &euro;{{ template.price }}
+                                {% else %}
+                                    Free
+                                {% endif %}
+                            </h3>
+                        </div>
+
+                        {# Action buttons section #}
+                        <div class="d-grid gap-2">
+                            {% if app.user %}
+                                {# Show appropriate button based on price #}
+                                {% if template.price is not empty %}
+                                    <a href="{{ path('app_cart_add', {'id': template.id}) }}" class="btn btn-teal btn-lg">Add to Cart</a>
+                                {% else %}
+                                    <a href="#" class="btn btn-teal btn-lg">Download Now</a>
+                                {% endif %}
+                            {% else %}
+                                {# Show login message for non-authenticated users #}
+                                <h5>Login to buy</h5>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {# ========================================
+               REVIEW FORM SECTION
+               ======================================== #}
+            {% if app.user %}
+                {# Check if current user has already reviewed this template #}
+                {% set userHasReviewed = false %}
+                {% for review in template.reviews %}
+                    {% if review.user.id == app.user.id %}
+                        {% set userHasReviewed = true %}
+                    {% endif %}
+                {% endfor %}
+                
+                {# Show appropriate content based on review status #}
+                {% if userHasReviewed %}
+                    {# User has already reviewed - show info message #}
+                    <div class="mt-5">
+                        <h2 class="text-light mb-4">Write a Review</h2>
+                        <div class="alert alert-info p-4 rounded-4" style="background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1);">
+                            <i class="fas fa-info-circle me-2"></i>
+                            You have already submitted a review for this template.
+                        </div>
+                    </div>
+                {% else %}
+                    {# User hasn't reviewed yet - show review form #}
+                    <div class="mt-5">
+                        <h2 class="text-light mb-4">Write a Review</h2>
+                        <div class="review-form-container p-4 rounded-4" style="background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1);">
+                            
+                            {# Start the Symfony form #}
+                            {{ form_start(reviewForm, {'attr': {'class': 'review-form'}}) }}
+                                <div class="row">
+                                    
+                                    {# Review Title Field #}
+                                    <div class="col-md-12 mb-3">
+                                        {{ form_label(reviewForm.title, null, {'label_attr': {'class': 'form-label text-light'}}) }}
+                                        {{ form_widget(reviewForm.title) }}
+                                        {{ form_errors(reviewForm.title) }}
+                                    </div>
+                                    
+                                    {# Review Description Field #}
+                                    <div class="col-md-12 mb-3">
+                                        {{ form_label(reviewForm.description, null, {'label_attr': {'class': 'form-label text-light'}}) }}
+                                        {{ form_widget(reviewForm.description) }}
+                                        {{ form_errors(reviewForm.description) }}
+                                    </div>
+                                    
+                                    {# Submit Button #}
+                                    <div class="col-md-12">
+                                        <button type="submit" class="btn btn-teal btn-lg">
+                                            <i class="fas fa-paper-plane me-2"></i>
+                                            Submit Review
+                                        </button>
+                                    </div>
+                                </div>
+                            {{ form_end(reviewForm) }}
+                        </div>
+                    </div>
+                {% endif %}
+            {% endif %}
+
+            {# ========================================
+               EXISTING REVIEWS SECTION
+               ======================================== #}
+            <div class="mt-5">
+                <h2 class="text-light mb-4">Reviews</h2>
+                
+                {# Check if there are any reviews to display #}
+                {% if template.reviews|length > 0 %}
+                    <div class="row g-4">
+                        {% for review in template.reviews %}
+                            {# Individual Review Card #}
+                            <div class="col-md-6">
+                                <div class="review-card p-4 rounded-4" style="background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1);">
+                                    
+                                    {# Review Header - User Info #}
+                                    <div class="d-flex align-items-center mb-3">
+                                        {# User Profile Picture #}
+                                        <img src="{{ review.user.profilePicture ? asset('images/pfps/' ~ review.user.profilePicture) : asset('images/default-profile.png') }}" 
+                                             class="rounded-circle me-3" 
+                                             style="width: 80px; height: 80px; object-fit: cover;"
+                                             alt="{{ review.user.username }}">
+                                        
+                                        {# User Details #}
+                                        <div>
+                                            <h6 class="text-light mb-0">{{ review.user.username }}</h6>
+                                            <small class="text-muted">{{ review.date|date('M d, Y') }}</small>
+                                        </div>
+                                    </div>
+                                    
+                                    {# Review Content #}
+                                    <h5 class="text-light mb-2">{{ review.title }}</h5>
+                                    <p class="text-muted mb-0">{{ review.description }}</p>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {# No reviews message #}
+                    <div class="alert alert-info">
+                        No reviews yet. Be the first to review this template!
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </main>
+{% endblock %} 

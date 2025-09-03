@@ -1,0 +1,62 @@
+.pricing-card {
+  transition: all 0.3s ease;
+  position: relative;
+  top: 0;
+}
+
+.pricing-card:hover {
+  top: -10px;
+  transform: translateY(0px);
+  box-shadow: 0 20px 30px rgba(0, 0, 0, 0.1) !important;
+}
+
+.pricing-btn {
+  transition: all 0.3s ease;
+}
+
+.pricing-btn:hover {
+  transform: scale(1.05);
+}
+
+.pricing-icon {
+  height: 80px;
+  width: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(13, 110, 253, 0.1);
+  border-radius: 50%;
+  margin: 0 auto;
+  transition: all 0.3s ease;
+}
+
+.pricing-card:hover .pricing-icon {
+  transform: scale(1.1);
+  background-color: rgba(13, 110, 253, 0.2);
+}
+
+.blue-blur-background {
+  background: rgba(0, 123, 255, 0.2); /* Light blue background */
+  backdrop-filter: blur(10px); /* Blur effect */
+  -webkit-backdrop-filter: blur(10px); /* For Safari */
+  border-radius: 10px; /* Optional: Rounded corners */
+  padding: 20px; /* Optional: Padding for content */
+}
+
+.template-card {
+  transition: transform 0.3s ease;
+}
+
+.template-card:hover {
+  transform: scale(1.02);
+  cursor: pointer;
+}
+
+.category-card {
+  transition: transform 0.3s ease;
+}
+
+.category-card:hover {
+  transform: scale(1.05);
+  cursor: pointer;
+}
